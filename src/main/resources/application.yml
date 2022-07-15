@@ -12,6 +12,13 @@ spring:
       format_sql: true
       hbm2ddl.auto: validate
 
+logging:
+  level:
+    root: INFO
+  file:
+    name: evgeniy.log
+    path: /
+
 fixedRate: PT1M
 
 api:

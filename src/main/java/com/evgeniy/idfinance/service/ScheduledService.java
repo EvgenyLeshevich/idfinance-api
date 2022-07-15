@@ -11,9 +11,12 @@ import org.springframework.stereotype.Service;
 public class ScheduledService {
 
     private final CryptocurrencyService cryptocurrencyService;
+    private final UserService userService;
 
     @Scheduled(fixedRateString = "${fixedRate}")
     public void startScheduledTasks() {
         cryptocurrencyService.updateCryptocurrencies();
+
+        userService.checkUserPrice();
     }
 }

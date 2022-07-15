@@ -19,7 +19,7 @@ public class UserController {
     @Operation(summary = "Create user")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserReadDto create(@Validated @RequestBody UserCreateDto user) {
+    public UserReadDto notify(@Validated @RequestBody UserCreateDto user) {
         return userService.create(user);
     }
 }
