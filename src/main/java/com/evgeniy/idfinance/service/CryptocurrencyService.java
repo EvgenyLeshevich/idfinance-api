@@ -1,5 +1,6 @@
 package com.evgeniy.idfinance.service;
 
+import com.evgeniy.idfinance.database.entity.Cryptocurrency;
 import com.evgeniy.idfinance.database.repository.CryptocurrencyRepository;
 import com.evgeniy.idfinance.dto.CryptocurrencyDto;
 import com.evgeniy.idfinance.mapper.CryptocurrencyEditMapper;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,5 +54,10 @@ public class CryptocurrencyService {
         return cryptocurrencyRepository.findAll().stream()
                 .map(cryptocurrencyReadMapper::map)
                 .toList();
+    }
+
+    public Optional<BigDecimal> findPriceBySymbol(String symbol) {
+        return cryptocurrencyRepository.findBySymbolIgnoreCase(symbol)
+                .map(Cryptocurrency::getPrice);
     }
 }
