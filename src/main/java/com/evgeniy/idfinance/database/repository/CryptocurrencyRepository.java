@@ -1,7 +1,6 @@
 package com.evgeniy.idfinance.database.repository;
 
 import com.evgeniy.idfinance.database.entity.Cryptocurrency;
-import com.evgeniy.idfinance.mapper.Mapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
