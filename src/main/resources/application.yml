@@ -13,3 +13,7 @@ spring:
       hbm2ddl.auto: validate
 
 fixedRate: PT1M
+
+api:
+  version: v1
+  description: This API is a test task for IDFinance.

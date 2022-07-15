@@ -3,6 +3,7 @@ package com.evgeniy.idfinance.service;
 import com.evgeniy.idfinance.database.repository.CryptocurrencyRepository;
 import com.evgeniy.idfinance.dto.CryptocurrencyDto;
 import com.evgeniy.idfinance.mapper.CryptocurrencyEditMapper;
+import com.evgeniy.idfinance.mapper.CryptocurrencyReadMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -22,6 +23,7 @@ public class CryptocurrencyService {
     private final RestTemplate restTemplate;
     private final CryptocurrencyRepository cryptocurrencyRepository;
     private final CryptocurrencyEditMapper cryptocurrencyEditMapper;
+    private final CryptocurrencyReadMapper cryptocurrencyReadMapper;
 
     @Transactional
     public void updateCryptocurrencies() {
@@ -43,5 +45,11 @@ public class CryptocurrencyService {
                                     cryptocurrencyRepository.updatePrice(dto.getPrice(), dto.getId()))
             );
         }
+    }
+
+    public List<CryptocurrencyDto> findAllCryptocurrencies() {
+        return cryptocurrencyRepository.findAll().stream()
+                .map(cryptocurrencyReadMapper::map)
+                .toList();
     }
 }
